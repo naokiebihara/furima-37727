@@ -16,9 +16,8 @@
 
 ### Association
 
- belongs_to :user
  has_many :items
- has_many :purchases
+ has_many :orders
 
 
 ## purchasesテーブル
@@ -43,21 +42,21 @@
 
 | Column               | Type       | Options                          |
 |--------------------- | ---------- | -------------------------------- |
-| image                | string     |	null: false                      |
+| user                 | references |	null: false, foreign_key: true   |
 | name	               | string     |	null: false                      |
 | description	         | text	      | null: false                      |
-| category_id	         | integer	  | null: false, foreign_key: true   |
+| category_id	         | integer	  | null: false                      |
 | item_status_id	     | integer    | null: false                      |
 | shipping_cost_id	   | integer	  | null: false                      |
 | prefecture_id	       | integer	  | null: false                      |
-| shipping_days_id	   | integer    |	null: false                      |
+| shipping_day_id	     | integer    |	null: false                      |
 | price	               | integer    | null: false                      |
 
 
 ### Association
 
 belongs_to :user
-belongs_to :orders
+has_one :order
 
 ## orders テーブル
 
@@ -70,3 +69,4 @@ belongs_to :orders
 
 belongs_to :user
 belongs_to :item
+has_one :payment
