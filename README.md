@@ -5,7 +5,7 @@
 | Column             | Type       | Options                        |
 | -------------------| ---------- | ------------------------------ |
 | nickname           | string     | null: false                    |
-| email              | string     | null: false                    |
+| email              | string     | null: false, unique: true                    |
 | encrypted_password | string     | null: false                    |
 | family_name	       | string	    | null: false                    |
 | first_name         | string	    | null: false	                   |
@@ -16,19 +16,18 @@
 
 ### Association
 
- belongs_to :destination dependent: :destroy
- belongs_to :card dependent: :destroy
+ belongs_to :user
+ has_many :items
+ has_many :purchases
 
-## purchaseテーブル
+
+## purchasesテーブル
 
 | Column               | Type       | Options                          |
 | ---------------------| ---------- | -------------------------------- |
 | user_id              | integer    | null: false, foreign_key: true   |
-| card_number          | string	    | null: false                      |
-| card_expiration_date | string	    | null: false                      |
-| security_code        | string	    | null: false                      |
 | post_code	           | string	    | null: false                      |
-| prefecture	         | string	    | null: false                      |
+| prefecture_id	       | integer	  | null: false                      |
 | city	               | string	    | null: false                      |
 | address	             | string	    | null: false                      |
 | building_name	       | string     |                                  |
@@ -39,23 +38,28 @@
  belongs_to :user
 
 
-## productテーブル
 
-| Column             | Type       | Options                          |
-|--------------------| ---------- | -------------------------------- |
-| name	             | string     |	null: false                      |
-| price	             | string	    | null: false                      |
-| description	       | string	    | null: false                      |
-| status	           | string	    | null: false                      |
-| shipping_cost	     | string	    | null: false                      |
-| shipping_days	     | string     |	null: false                      |
-| prefecture_id	     | string	    | null: false                      |
-| product_condition  | string     | null: false                      |
-| judgment	         | string     |                                  |
-| category_id	       | integer	  | null: false, foreign_key: true   |
-| shipping_id	       | integer	  | null: false, foreign_key: true   |
-| user_id	           | references	| null: false, foreign_key: true   |
+## itemsテーブル
 
+| Column               | Type       | Options                          |
+|--------------------- | ---------- | -------------------------------- |
+| name	               | string     |	null: false                      |
+| price	               | string	    | null: false                      |
+| description	         | string	    | null: false                      |
+| item_status_id	     | integer    | null: false                      |
+| shipping_cost_id	   | integer	  | null: false                      |
+| shipping_days_id	   | integer    |	null: false                      |
+| prefecture_id	       | integer	  | null: false                      |
+| judgment	           | string     |                                  |
+| category_id	         | integer	  | null: false, foreign_key: true   |
+| shipping_id	         | integer	  | null: false, foreign_key: true   |
+| user                 | references	| null: false, foreign_key: true   |
 
 ### Association
+
+belongs_to :user
+belongs_to :category
+belongs_to_active_hash :status
+belongs_to_active_hash :prefecture
+belongs_to :category
 
