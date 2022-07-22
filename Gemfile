@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'active_hash'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
@@ -58,5 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development do
   gem 'rubocop', require: false
 end
+
 
 gem 'devise'
