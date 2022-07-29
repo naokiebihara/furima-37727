@@ -33,5 +33,4 @@ class Item < ApplicationRecord
     validates :shipping_cost_id
     validates :shipping_date_id
   end
-
 end
