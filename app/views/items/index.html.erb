@@ -129,7 +129,7 @@
     <ul class='item-lists'>
     
       
-      <% if @items.length == 0 %>
+      <% if @items.length == 1 %>
       <% @items.each do |item|%>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
