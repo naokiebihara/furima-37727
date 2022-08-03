@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :edit]
   
   def index
     @items = Item.all.order(created_at: :desc)
@@ -20,24 +20,19 @@ class ItemsController < ApplicationController
     end  
   end
 
-  #def edit
-    # ログインしているユーザーと同一であればeditファイルが読み込まれる
-    #if @item.user_id == current_user.id && @item.order.nil?
-    #else
-     # redirect_to root_path
-    #end
-  #end
+  def edit
+    @item = Item.find(params[:id])
+  end
 
-  #def update
-    #@item.update(item_params)
-    # バリデーションがOKであれば詳細画面へ
-    #if @item.valid?
-      #redirect_to item_path(item_params)
-    #else
-      # NGであれば、エラー内容とデータを保持したままeditファイルを読み込み、エラーメッセージを表示させる
-      #render 'edit'
-    #end
-  #end
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.update(item_params)
+      redirect_to item_path(item_params)
+    else
+     render 'edit'
+    end
+  end
 
   def show
   end
