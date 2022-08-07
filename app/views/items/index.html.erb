@@ -134,7 +134,7 @@
       <li class='list'>
         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
-          <%= image_tag item.image,class:  "item-img" %>
+          <%= image_tag item.image,class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
           <% if @items.present? %>
@@ -142,7 +142,6 @@
               <span>Sold Out!!</span>
             </div>
           <% end %>
-          <%# //商品が売れていればsold outを表示しましょう %>
 
           </div>
         <div class='item-info'>
@@ -181,9 +180,6 @@
         <% end %>
       </li>
   <% end %>
-     
-      
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       
     </ul>
   </div>
