@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :item_status do
+  factory :payment do
   end
 end
