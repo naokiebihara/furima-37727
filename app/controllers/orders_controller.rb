@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
   
   def index
-    @item = Item.find(params[:item_id])
     @order_form = OrderForm.new
     if current_user.id == @item.user_id
       redirect_to root_path
@@ -12,7 +11,6 @@ class OrdersController < ApplicationController
 
 
   def create
-    @item = Item.find(params[:item_id])
     @order_form = OrderForm.new(order_params)
     if @order_form.valid?
       pay_item
